@@ -1,0 +1,110 @@
+#cart_table{
+    width: 100%;
+    margin-top: 20px;
+    background-color: #FFF;
+    /*border-top: 1px solid #E7E7EB;
+    border-bottom: 1px solid #E7E7EB;*/
+    border: 1px solid #E7E7EB;
+    border-spacing: 0px;
+    font-size: 15px;
+    font-weight: 400;
+    border-spacing: 0px;
+}
+
+
+#table_head{
+    background-color: #F4F5F9;
+}
+#table_head p{
+    font-family: 黑体; 
+    font-weight: 500;
+    color: #363636;
+    font-size: 15px;
+}
+
+.table_cell{  
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+.table_cell.action{
+    width: 100px;
+    border-left: 0;
+    border-right: 1px solid #E7E7EB;
+    text-align: center;
+}
+.table_cell.action a{
+    color: #2C1201;
+}
+.table_cell.select{
+    width: 40px;
+}
+.table_cell.info{
+    border-left: 0;   
+    padding-left: 0px;
+    width: 500px;
+}
+.table_cell.price{
+    width: 40px;
+}
+.table_cell.num{
+    padding: 0;
+    width: 50px;
+}
+.table_cell.admin{
+    height:30px;
+    text-align: center;
+}
+#group_select{
+    padding-top: 15px;
+    width: 60px;
+    height: 45px;
+    text-align: left;
+}
+.selectBox{
+    position: relative; top: 3px;
+    font-family: 黑体; 
+    font-weight: 500;
+    color: #363636;
+    font-size: 15px;
+}
+
+
+.pic{
+    float: left;
+    height: 60px;  
+    width: 60px;
+    margin-top: 10px;
+}
+.goodinfo{
+    padding: 30px;
+    width: 340px;
+    float: left;
+    font-family: 微软雅黑; 
+    font-size: 15px;
+}
+
+.item-amount{
+    width: 80px;
+    margin: 0 auto;
+}
+.item-amount input{
+    position: relative;
+    float: left;
+    height: 30px;
+    width:40px;
+    color: rgb(60, 60, 60);
+    text-align:center
+}
+.item-amount a{
+    border: 0;
+    position: relative;
+    float: left;
+    display: block;
+    height: 30px;
+    width: 20px;
+    text-align: center;
+    line-height: 30px;
+    color: #333;
+    background-color: #eee;
+}

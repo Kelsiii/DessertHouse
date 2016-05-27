@@ -1,0 +1,509 @@
+.page {
+    margin-top: 20px;
+}
+.fr {
+    float: right;
+}
+.page span {
+    display: inline;
+    padding:0 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0 5px;
+    border: 1px solid #E4E4E4;
+    display: inline-block;
+    background-color: #C43F50;
+    color: #fff;
+}
+.a2, .a2:visited, .a2:link, .a2:active {
+    color: #969696;
+    text-decoration: none;
+    font-weight: 600;
+}
+.a2:hover{
+    color: #333;
+}
+.a2:active{
+    display: inline-block;
+    background-color: #C43F50;
+    color: #fff;
+}
+.page a {
+    background-color: #fff;
+    padding: 0 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: inline-block;
+    border: 2px solid #E4E4E4;
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
+    margin: 0 2px;
+}
+.page .turing {
+    border: 0 none;
+    color: #969696;
+    font-weight: 600;
+}
+a:link { text-decoration: none; } /*正常情况下无下划线*/
+a:visited { text-decoration: none; } /*访问过的链接无下划线*/
+
+.list{
+    padding-bottom: 20px;
+}
+.listD{
+    position: absolute;
+    left: 80px;
+}
+
+.top-btn{
+    color: #91602C;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 50px;
+    border-right: solid 1px;
+    float: left;
+    text-align: center;
+}
+
+
+.btn {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-family: 微软雅黑;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 auto 1em;
+  max-width: 160px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+}
+@media (min-width: 400px) {
+  .btn {
+    display: inline-block;
+    margin-right: 2.5em;
+  }
+  .btn:nth-of-type(even) {
+    margin-right: 0;
+  }
+}
+@media (min-width: 600px) {
+  .btn:nth-of-type(even) {
+    margin-right: 2.5em;
+  }
+  .btn:nth-of-type(5) {
+    margin-right: 0;
+  }
+}
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn-2 {
+  letter-spacing: 0;
+    color:#91602C;
+}
+
+.btn-2:hover,
+.btn-2:active {
+  letter-spacing: 5px;
+}
+
+.btn-2:after,
+.btn-2:before {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border: 1px solid rgba(255, 255, 255, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  -webkit-transition: all 280ms ease-in-out;
+          transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn-2:hover:after,
+.btn-2:hover:before {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-color: #91602C;
+  -webkit-transition: width 350ms ease-in-out;
+          transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.btn-2:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
+
+.sim-button{
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	margin-top: 50px;
+	width: 180px;
+	cursor: pointer;
+}
+
+.button2 {
+	color: rgba(255,255,255,1);
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	position: relative;
+	border: 3px solid rgba(255,255,255,0.5);
+	overflow: hidden;
+    font-weight: 600;
+}
+.button2 a{
+	color: rgba(51,51,51,1);
+	text-decoration: none;
+	display: block;
+}
+.button2 span {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.button2:hover{
+	background-color: rgba(255,255,255,0.2);
+}
+.button2:hover > span{
+	opacity: 0;
+	-webkit-transform: translate(0px,-40px);
+	transform: translate(0px,-40px);
+}
+.button2::after{
+	content: attr(data-text);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	-webkit-transform: translate(0, 30%);
+	transform: translate(0, 30%);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;	
+}
+.button2:hover::after{
+	opacity: 1;
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.button5{
+	color: #91602C;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	position: relative;
+	border: 1px solid rgba(255,255,255,0.5);
+}
+.button5 a{
+	color: rgba(51,51,51,1);
+	text-decoration: none;
+	display: block;
+}
+.button5:hover{
+	-webkit-animation-name: jello;
+	animation-name: jello;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	background-color: rgba(255,255,255,0.2);
+	
+}
+
+.button10{
+	color: rgba(255,255,255,1);
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	position: relative;	
+}
+.button10 a{
+	color: rgba(51,51,51,1);
+	text-decoration: none;
+	display: block;
+}
+.button10 span{
+	z-index: 2;	
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;	
+}
+.button10::before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	border: 1px solid rgba(255,255,255,0.5);
+	background-color: rgba(255,255,255,0.25);
+}
+.button10::after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	border: 1px solid rgba(255,255,255,0.5);
+	background-color: rgba(255,255,255,0.25);
+
+}
+.button10:hover::before{
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+			background-color: rgba(255,255,255,0);
+}
+.button10:hover::after{
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+			background-color: rgba(255,255,255,0);
+}
+
+.calBtn{
+    display: block;
+    width: 200px;
+    height: 50px;
+    float: right;
+    background-color: #C43F50;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-family: 黑体;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.roundbutton {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+ 
+    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+ 
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+ 
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+ 
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+}
+.roundbutton:hover {
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+    box-shadow: 1px 1px 1px rgba(0,0,0,.29), inset 0px 0px 2px rgba(0,0,0, .5);
+}
+.roundbutton:active {
+    -webkit-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+    -moz-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+    box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+}
+.gray {
+    color: #515151;
+ 
+    background: #d3d3d3; /* Old browsers */
+    background: -moz-linear-gradient(top,  #d3d3d3 0%, #8a8a8a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d3d3d3), color-stop(100%,#8a8a8a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #d3d3d3 0%,#8a8a8a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #d3d3d3 0%,#8a8a8a 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #d3d3d3 0%,#8a8a8a 100%); /* IE10+ */
+    background: linear-gradient(top,  #d3d3d3 0%,#8a8a8a 100%); /* W3C */
+}
+.big {
+    padding: 0 40px;
+    padding-top: 10px;
+    height: 45px;
+    text-transform: uppercase;
+    font: bold 20px/22px Arial, sans-serif;
+}
+.big span {
+    display: block;
+    text-transform: none;
+    font: italic normal 12px/18px Georgia, sans-serif;
+    text-shadow: 1px 1px 1px rgba(255,255,255, .12);
+}
+
+
+.left-arrow {
+    border: 15px solid #fff;
+    border-right-color: #515151;
+    width: 0;
+    height: 0;
+    position: relative;
+    float: left;
+}
+.left-arrow:hover {
+    border-right-color: #717171;
+}
+
+.backBtn{
+    color:  #515151;
+}
+.backBtn:hover{
+    color: #717171;
+}
+
+.ghbutton { 
+    position: relative; 
+    overflow: visible; 
+    display: inline-block; 
+    text-align: center;
+    font-family: 黑体;
+    letter-spacing: 5px;
+    padding: 0.5em 1em; 
+    margin: 0;
+    text-decoration: none; 
+    text-shadow: 1px 1px 0 #fff; 
+    font:11px/normal sans-serif; 
+    color: #333; 
+    white-space: nowrap; 
+    cursor: pointer; 
+    outline: none; 
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    -o-background-clip: padding-box; 
+    /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
+    -webkit-border-radius: 0.2em; 
+    -moz-border-radius: 0.2em; 
+    border-radius: 0.2em; 
+    /* IE hacks */
+    zoom: 1; 
+    *display: inline; 
+}
+.ghbutton.gray{
+    border: 1px solid #d4d4d4; 
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+}
+
+.ghbutton.pink{
+    border: 1px solid #DDA06F; 
+    background-color:#E9C1A0;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E9C1A0), to(#E9C1A0));
+    background-image: -moz-linear-gradient(#E9C1A0, #E9C1A0);
+    background-image: -o-linear-gradient(#E9C1A0, #E9C1A0);
+    background-image: linear-gradient(#E9C1A0, #E9C1A0);
+}
+
+/*.ghbutton:hover,
+.ghbutton:focus,
+.ghbutton:active {
+    border-color: #E9C1A0;
+    border-bottom-color: #E3B086;
+    color: #552E1D; 
+    background-color: #FED136;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E9C1A0), to(#E9C1A0));
+    background-image: -moz-linear-gradient(#E9C1A0, #E9C1A0);
+    background-image: -o-linear-gradient(#E9C1A0, #E9C1A0);
+    background-image: linear-gradient(#E9C1A0, #E9C1A0);
+}*/
+
+.ghbutton:active,
+.ghbutton.active {
+    border-color: #E9C1A0;
+    border-bottom-color: #E9C1A0;
+    color: #552E1D; 
+    background-color: #FBEFE1;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FBEFE1), to(#FBEFE1));
+    background-image: -moz-linear-gradient(#FBEFE1, #FBEFE1);
+    background-image: -o-linear-gradient(#FBEFE1, #FBEFE1);
+    background-image: linear-gradient(#FBEFE1, #FBEFE1);
+}
+
+.ghbutton:disabled,
+.ghbutton.active{
+    cursor: auto;
+    border: 1px solid #d4d4d4; 
+    background-color: #ececec;
+    color: #333; 
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+}
+
+/* overrides extra padding on button elements in Firefox */
+.ghbutton::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+.getMore{
+    position: relative;
+    display: block;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #552E1D;
+    background-color: #E9C1A0;
+    border-radius: 2px;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.getMore:hover{
+    background-color: #FBEFE1;
+}
