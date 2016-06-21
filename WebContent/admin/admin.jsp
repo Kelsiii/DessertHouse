@@ -57,6 +57,10 @@
             margin: 20px;
         }
         
+        .lalala{
+        	margin:20px 200px;
+        }
+        
     </style>
     
     <script src="../js/jquery.min.js"></script>
@@ -80,9 +84,10 @@
            	document.getElementById("store_name").value = name;
            	document.getElementById("store_address").value = address;
            	document.getElementById("store_tel").value = tel;
-            document.getElementById("store_delete").style.visibility = "";
+            document.getElementById("store_delete").style.display = "inline-block";
             document.getElementById("store").style.visibility = "hidden";
             document.getElementById("store_edit").style.visibility = "";
+            document.getElementById("store_submit").style.marginLeft = "50px";
             document.getElementById("store_submit").onclick = function(){
             	if(document.getElementById("store_id").value == ""||
             			document.getElementById("store_name").value == ""||
@@ -153,8 +158,8 @@
                     select3[i].selected=false;                                   //设置为未选中状态。
             }
             
-            document.getElementById("staff_delete").style.visibility = "";
-            
+            document.getElementById("staff_delete").style.display = "inline-block";
+            document.getElementById("staff_submit").style.marginLeft="50px";
             document.getElementById("staff_submit").onclick = function(){
             	if(document.getElementById("staff_id").value == ""||
             			document.getElementById("staff_name").value == ""||
@@ -250,9 +255,11 @@
          	document.getElementById("store_name").value = "";
          	document.getElementById("store_address").value = "";
          	document.getElementById("store_tel").value = "";
-         	document.getElementById("store_delete").style.visibility = "hidden";
+         	document.getElementById("store_delete").style.display = "none";
          	document.getElementById("store").style.visibility = "hidden";
             document.getElementById("store_edit").style.visibility = "";
+            
+            document.getElementById("store_submit").style.marginLeft = "380px";
             document.getElementById("store_submit").onclick = function(){
             	if(document.getElementById("store_id").value == ""||
             			document.getElementById("store_name").value == ""||
@@ -289,7 +296,7 @@
         function addStaff(){
             document.getElementById("staff").style.visibility = "hidden";
             document.getElementById("staff_edit").style.visibility = "";
-            document.getElementById("staff_delete").style.visibility = "hidden";
+            document.getElementById("staff_delete").style.display = "none";
             
             document.getElementById("staff_id").value = "";
            	document.getElementById("staff_id").disabled = false;
@@ -301,6 +308,7 @@
             document.getElementById("staff_store")[0].select = true;
             document.getElementById("staff_position")[0].select = true;
             
+            document.getElementById("staff_submit").style.marginLeft = "300px";
             document.getElementById("staff_submit").onclick = function(){
             	if(document.getElementById("staff_id").value == ""||
             			document.getElementById("staff_name").value == ""||
@@ -426,6 +434,7 @@
         </div>
         
         <div class="right-container" id="store_edit" style="visibility:hidden;">
+        <div>
             <a class="backBtn" href="#" onclick="showShopList()">
                 <div style="width:150px;height:50px;">
                     <div class="left-arrow"></div>
@@ -433,7 +442,7 @@
                 </div>
             </a>
             
-            <ul>
+            <ul class="lalala">
                 <li>
                     <span class="sys-ch">店铺编号：</span>
                     <input id="store_id" style="width:300px;height:30px;">
@@ -453,10 +462,10 @@
                 
             </ul>
             
-            <a class="ghbutton gray" id="store_delete" href="#" onclick="deleteShop()" style="margin:50px;;width:100px;height:40px;font-size:16px;">删除</a>
-            <a class="ghbutton pink" id="store_submit" href="#" onclick="" style="margin-left:50px;width:100px;height:40px;font-size:16px;">确认</a>
+            <a class="ghbutton gray" id="store_delete" href="#" onclick="deleteShop()" style="margin-top:50px;margin-left:280px;width:100px;height:40px;font-size:16px;">删除</a>
+            <a class="ghbutton pink" id="store_submit" href="#" onclick="" style="margin-top:20px;margin-left:50px;width:100px;height:40px;font-size:16px;">确认</a>
             
-            
+        </div>    
         </div>
         
         <div class="right-container" id="staff" style="visibility:hidden">
@@ -559,6 +568,7 @@
         </div>
         
         <div class="right-container" id="staff_edit" style="visibility:hidden;">
+        
             <a class="backBtn" href="#" onclick="showStaffList()">
                 <div style="width:150px;height:50px;">
                     <div class="left-arrow"></div>
@@ -566,7 +576,7 @@
                 </div>
             </a>
             
-            <ul style="">
+            <ul class="lalala">
                 <li>
                     <span class="sys-ch">员工编号：</span>
                     <input id="staff_id" style="width:300px;height:30px;">
@@ -612,9 +622,8 @@
                 
             </ul>
             
-            <a class="ghbutton gray" id="staff_delete" href="#" onclick="deleteStaff()" style="margin:20px 50px;width:100px;height:40px;font-size:16px;">删除</a>
-            <a class="ghbutton pink" id="staff_submit" href="#" onclick="" style="margin-left:50px;width:100px;height:40px;font-size:16px;">确认</a>
-            
+            <a class="ghbutton gray" id="staff_delete" href="#" onclick="deleteStaff()" style=" margin-left: 260px;width:100px;height:40px;font-size:16px;">删除</a>
+            <a class="ghbutton pink" id="staff_submit" href="#" onclick="" style="margin-top:20px;margin-left:70px;width:100px;height:40px;font-size:16px;">确认</a>
             
         </div>
         

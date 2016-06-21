@@ -122,6 +122,10 @@
 			}
 		}
 		
+		function ResetCharge(){
+			document.getElementById("charge_input").value="";
+		}
+		
 		function SubmitCharge(){
 			var sum = document.getElementById("charge_input").value;
 			if(sum=="")
@@ -172,7 +176,7 @@
 <body>
     <div class="common-container">
         <div class="top-menu">
-            <div class="top-btn" style="margin-left:180px;"><a href="index.html" class="menu">首页</a></div>
+            <div class="top-btn" style="margin-left:180px;"><a href="index.jsp" class="menu">首页</a></div>
             <div class="top-btn"><a href="shopchoose.jsp" class="menu">线上订购</a></div>
             <div class="top-btn"><a href="#" class="menu" style="color: #C43F50;">个人中心</a></div>
             <div class="top-btn"><a href="signup.jsp" target="_blank" class="menu">会员注册</a></div>
@@ -211,11 +215,11 @@
                     
                     <ul style="border-bottom:solid 1px;">
                         <li>
-                            <span class="sys-ch-bold">会员编号：</span>
+                            <span class="sys-ch-bold">会员编号&emsp;：</span>
                             <span class="sys-ch" style="color:#1B0D00"><%=user.getId() %></span>
                         </li>
                         <li>
-                            <span class="sys-ch-bold">账户状态：</span>
+                            <span class="sys-ch-bold">账户状态&emsp;：</span>
                             <span class="sys-ch" style="color:#1B0D00">
                             	<%if(user.getState()==User.UserState.inactive){ %>未激活
                             	<%}else if(user.getState()==User.UserState.active){ %>正常
@@ -223,15 +227,17 @@
                             	<%}else if(user.getState()==User.UserState.stopped){ %>停用
                             	<%} %>
                             </span>
+                            <%if(user.getState()!=User.UserState.stopped){ %>
                             <a id="stopSub" href="#" onclick="StopMember()" class="sys-bold" style="margin-left:20px;color: #824220;">停用账户</a>
+                        	<%} %>
                         </li>
                         <li>
-                            <span class="sys-ch-bold">账户余额：</span>
-                            <span class="sys-ch" style="color:#1B0D00">￥<%=user.getBalance() %></span>
+                            <span class="sys-ch-bold">账户余额&emsp;：</span>
+                            <span class="sys-ch" style="color:#1B0D00;">￥<%=user.getBalance() %></span>
                         </li>
                         <li>
-                            <span class="sys-ch-bold">会员等级：</span>
-                            <span class="sys-ch" style="color:#1B0D00">
+                            <span class="sys-ch-bold">会员等级&emsp;：</span>
+                            <span class="sys-ch" style="color:#1B0D00;">
                             	<%if(user.getLevel()==1){ %>普通会员
                             	<%}else if(user.getLevel()==2){ %>高级会员
                             	<%}else if(user.getLevel()==3){ %>白金会员
@@ -240,8 +246,8 @@
                             </span>
                         </li>
                         <li>
-                            <span class="sys-ch-bold">会员积分：</span>
-                            <span class="sys-ch" style="color:#1B0D00"><%=user.getPoint() %></span>
+                            <span class="sys-ch-bold">会员积分&emsp;：</span>
+                            <span class="sys-ch" style="color:#1B0D00;"><%=user.getPoint() %></span>
                         </li>
                         <li>
                             <span class="sys-ch-bold">会员有效期：</span>
@@ -260,14 +266,14 @@
                             <input id="tel_input" value="<%=user.getTel() %>" style="position:absolute; left:130px;width:200px;visibility:hidden;">
                         </li>
                         <li>
-                            <span class="sys-ch-bold">年龄：</span>
+                            <span class="sys-ch-bold">年&emsp;&emsp;龄：</span>
                             <span id="age" class="sys-ch" style="color:#1B0D00"><%=user.getAge() %></span>
-                            <input id="age_input" value="<%=user.getAge() %>" style="position:absolute; left:100px;width:230px;visibility:hidden;">
+                            <input id="age_input" value="<%=user.getAge() %>" style="position:absolute; left:130px;width:230px;visibility:hidden;">
                         </li>
                         <li>
-                            <span class="sys-ch-bold">地址：</span>
+                            <span class="sys-ch-bold">地&emsp;&emsp;址：</span>
                             <span id="ad" class="sys-ch" style="color:#1B0D00"><%=user.getAddress() %></span>
-                            <input id="ad_input" value="<%=user.getAddress() %>" style="position:absolute; left:100px;width:300px;height:40px;visibility:hidden;">
+                            <input id="ad_input" value="<%=user.getAddress() %>" style="position:absolute; left:130px;width:300px;height:40px;visibility:hidden;">
                         </li>
                     </ul>
                     <a id="editSub" class="ghbutton pink" href="#" onclick="SubmitInfo()" style= "visibility:hidden;margin-top:40px;margin-left:40px;width:100px;height:20px;font-size:14px;">确认</a>
@@ -290,7 +296,8 @@
                             <input id="charge_input" style="width:230px;">
                         </li>
                         <%if(user.getState()!=User.UserState.stopped){ %>
-                    	    <a id="chargeSub" class="ghbutton pink" href="#" onclick="SubmitCharge()" style= "margin-top:20px;margin-left:100px;width:100px;height:20px;font-size:14px;">确认</a>
+                    	    <a id="chargeSub" class="ghbutton pink" href="#" onclick="SubmitCharge()" style= "margin-top:20px;width:100px;height:20px;font-size:14px;">确认</a>
+                    	    <a id="resetSub" class="ghbutton gray" href="#" onclick="ResetCharge()" style= "margin-top:20px;margin-left:55px;width:100px;height:20px;font-size:14px;">重置</a>
         				<%} %>
                     </ul>
                     

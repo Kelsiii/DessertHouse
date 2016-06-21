@@ -15,7 +15,6 @@ import desserthouse.action.StoreListBean;
 import desserthouse.logic.StoreManager;
 import desserthouse.logic.impl.StoreManagerImpl;
 import desserthouse.model.Store;
-import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class StaffServlet

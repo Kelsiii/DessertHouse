@@ -32,6 +32,8 @@
 				alert("请填写密码");
 			else if(document.getElementById("card").value=="")
 				alert("请填写付款卡号");
+			else if(document.getElementById("password").value!=document.getElementById("password2").value)
+				alert("两次密码输入不一致");
 			else{
                 $.ajax({
                     //提交数据的类型 POST GET
@@ -39,7 +41,7 @@
                     //提交的网址
                     url:"/DessertHouse/RegisterServlet",
                     //提交的数据
-                    data:{password:document.getElementById("password").value,age:document.getElementById("age").value,
+                    data:{password:document.getElementById("password").value,
                           tel:document.getElementById("tel").value,address:document.getElementById("address").value,
                           card:document.getElementById("card").value,id:document.getElementById("userid").innerHTML
                          },
@@ -70,15 +72,15 @@
         <h6 style="margin-left:3%;color:#B20837">Please fill in the blank to register. </h6>
         
         <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi" type="text" id="password" />
+            <input class="input__field input__field--hoshi" type="password" id="password" />
             <label class="input__label input__label--hoshi input__label--hoshi-color-1" >
                 <span class="input__label-content input__label-content--hoshi">Password*</span>
             </label>
         </span>
         <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi" type="text" id="age" />
+            <input class="input__field input__field--hoshi" type="password" id="password2" />
             <label class="input__label input__label--hoshi input__label--hoshi-color-1" >
-                <span class="input__label-content input__label-content--hoshi">Age</span>
+                <span class="input__label-content input__label-content--hoshi">Password Again*</span>
             </label>
         </span>
         

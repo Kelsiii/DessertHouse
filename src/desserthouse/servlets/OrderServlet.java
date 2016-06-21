@@ -65,6 +65,15 @@ public class OrderServlet extends HttpServlet {
 			if(list==null)
 				out.print("noplan");
 			else{
+				int all = list.size();
+				for(int i=0;i<all;i++){
+					int stock = sm.getStock(storeid, date, list.get(i).getId());
+					if(stock==0){
+						list.remove(i);
+						i--;
+						all--;
+					}
+				}
 				CommodityListBean commodityListBean = new CommodityListBean();
 				commodityListBean.setCommodityList(list);
 				session.setAttribute("CommodityList", commodityListBean);
@@ -81,6 +90,15 @@ public class OrderServlet extends HttpServlet {
 			String date = (String) session.getAttribute("date");
 			String ctype = request.getParameter("ctype");
 			List<Commodity> list = sm.getList(storeid, date,ctype);
+			int all = list.size();
+			for(int i=0;i<all;i++){
+				int stock = sm.getStock(storeid, date, list.get(i).getId());
+				if(stock==0){
+					list.remove(i);
+					i--;
+					all--;
+				}
+			}
 			CommodityListBean commodityListBean = new CommodityListBean();
 			commodityListBean.setCommodityList(list);
 			session.setAttribute("CommodityList", commodityListBean);

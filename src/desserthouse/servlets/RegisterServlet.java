@@ -49,14 +49,13 @@ public class RegisterServlet extends HttpServlet {
 		User user = new User();
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		int age = Integer.parseInt(request.getParameter("age"));
 		String tel = request.getParameter("tel");
 		String address = request.getParameter("address");
 		String card = request.getParameter("card");
 		user.init();
 		user.setAddress(address);
 		user.setCard(card);
-		user.setAge(age);
+		user.setAge(0);
 		user.setId(id);
 		user.setPassword(password);
 		user.setTel(tel);

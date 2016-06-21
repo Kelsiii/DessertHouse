@@ -54,7 +54,7 @@
                             alert("您的账户已暂停使用，请重新激活");
                         else if(data=="stopped")
                             alert("您的账户已停止使用");
-                        window.location.href="index.html"; 
+                        window.location.href="index.jsp"; 
                     }
                 }
 			});

@@ -269,7 +269,7 @@
               <div style="margin-top: 30px; height:100px;">
                   
                   <a id="" class="calBtn" href="calculate.jsp" onclick="">结    算</a>
-                  <span id="totalpricetag"><%=cart.getTotal() %></span>
+                  <span id="totalpricetag">￥<%=cart.getTotal() %></span>
                   <span class="title-ch-bold" style="color: #C43F50;float:right;padding-right:10px;line-height:50px;">总计：</span>
               </div>
                 

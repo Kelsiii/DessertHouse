@@ -149,7 +149,7 @@
 <body>
     <div class="common-container">
         <div class="top-menu">
-            <div class="top-btn" style="margin-left:180px;"><a href="index.html" class="menu">首页</a></div>
+            <div class="top-btn" style="margin-left:180px;"><a href="index.jsp" class="menu">首页</a></div>
             <div class="top-btn"><a href="shopchoose.jsp" class="menu" style="color: #C43F50;">线上订购</a></div>
             <div class="top-btn"><a href="userinfo.jsp" class="menu">个人中心</a></div>
             <div class="top-btn"><a href="signup.jsp" target="_blank" class="menu">会员注册</a></div>
