@@ -87,35 +87,15 @@
 	    }
     </script>
     
-    <script type="text/javascript">
-    	function showPlan(){
-    		document.getElementById("plan").style.visibility = "";
-    		document.getElementById("sale").style.visibility = "hidden";
-    		document.getElementById("user").style.visibility = "hidden";
-    		document.getElementById("indexmenu").style.height = '580px';
-    	}
-    	
-    	function showSale(){
-    		document.getElementById("plan").style.visibility = "hidden";
-    		document.getElementById("sale").style.visibility = "";
-    		document.getElementById("user").style.visibility = "hidden";
-    		document.getElementById("indexmenu").style.height = '1500px';
-    	}
-    	
-    	function showUser(){
-    		document.getElementById("user").style.visibility = "";
-    		document.getElementById("plan").style.visibility = "hidden";
-    		document.getElementById("sale").style.visibility = "hidden";
-    		document.getElementById("indexmenu").style.height = '580px';
-    	}
-    </script>
 </head>
 
 <body>
     <div id="indexmenu" style="padding-top:50px;">
            <a href="#" onclick="showPlan()" class="btn btn-2">销售计划</a> 
-           <a href="#" onclick="showSale()" class="btn btn-2">销售统计</a>
-           <a href="#" onclick="showUser()" class="btn btn-2">会员统计</a>
+           <a href="salestat.jsp" class="btn btn-2">销售统计</a>
+           <a href="userstat.jsp" class="btn btn-2">会员统计</a>
+           <a href="channel.jsp" class="btn btn-2">渠道统计</a>
+           <a href="staffstat.jsp" class="btn btn-2">业绩统计</a>
     </div>
     
     <div class="right-container" id="plan" style="visibility:">
@@ -197,6 +177,7 @@
         
         <div style="margin-top:20px;">
             <div style="width:70%;position:relative;float:left;">
+            	
                 <table id="cart_table" cellspacing="0" >
                     <thead id="table_head">
                         <tr>

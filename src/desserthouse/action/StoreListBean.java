@@ -26,9 +26,6 @@ public class StoreListBean implements Serializable {
 	}
 	
 	
-	public void setHomeworkList(Store store, int index) {
-		storeList.set(index, store);
-	}
 	
 	public Store getStore(int index) {
 		return (Store) storeList.get(index);

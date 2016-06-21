@@ -3,6 +3,7 @@ package desserthouse.logic;
 import java.util.List;
 
 import desserthouse.model.Plan;
+import desserthouse.model.PlanCommodity;
 
 public interface PlanManager {
 	public List<Plan> GetAllPlan();//获得所有销售计划
@@ -12,4 +13,6 @@ public interface PlanManager {
 	public boolean Add(Plan plan);//增加销售计划
 	public boolean Update(Plan plan);//修改销售计划
 	public boolean Approve(Plan plan);//通过销售计划
+	
+	public Plan getNullPlan();
 }

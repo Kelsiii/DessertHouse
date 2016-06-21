@@ -20,22 +20,28 @@ import javax.servlet.http.HttpSession;
 
 import desserthouse.action.OrderListBean;
 import desserthouse.action.PlanListBean;
+import desserthouse.action.PlanStatBean;
 import desserthouse.action.StaffListBean;
 import desserthouse.action.SaleStatisticBean;
 import desserthouse.action.StoreListBean;
 import desserthouse.logic.OrderManager;
 import desserthouse.logic.PlanManager;
 import desserthouse.logic.StaffManager;
+import desserthouse.logic.Statistic;
 import desserthouse.logic.StockManager;
 import desserthouse.logic.StoreManager;
 import desserthouse.logic.UserManager;
 import desserthouse.logic.impl.OrderManagerImpl;
 import desserthouse.logic.impl.PlanManagerImpl;
 import desserthouse.logic.impl.StaffManagerImpl;
+import desserthouse.logic.impl.StatisticImpl;
 import desserthouse.logic.impl.StockManagerImpl;
 import desserthouse.logic.impl.StoreManagerImpl;
 import desserthouse.logic.impl.UserManagerImpl;
+import desserthouse.model.Plan;
+import desserthouse.model.PlanCommodity;
 import desserthouse.model.Staff;
+import desserthouse.model.StaffSale;
 import desserthouse.model.Store;
 import desserthouse.model.User;
 
@@ -75,6 +81,7 @@ public class AdminLoginServlet extends HttpServlet {
 		PlanManager pm = new PlanManagerImpl();
 		OrderManager om = new OrderManagerImpl();
 		UserManager um = new UserManagerImpl();
+		Statistic stat = new StatisticImpl();
 		String result = sm.login(id,password);
 		response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("UTF-8");
@@ -100,79 +107,53 @@ public class AdminLoginServlet extends HttpServlet {
 				session.setAttribute("PlanList", planListBean);
 				
 				StoreListBean storeListBean = new StoreListBean();
-				List storelist = stm.GetStoreList();
+				List<Store> storelist = stm.GetStoreList();
 				storeListBean.setStoreList(storelist);
 				session.setAttribute("StoreList", storeListBean);
+				
+				Plan statplan = pm.getNullPlan();
+				statplan.setStore(storelist.get(0).getId());
+				statplan.setDate("点击选择日期");
+				PlanStatBean planStat = new PlanStatBean();
+				planStat.setPlan(statplan);
+				session.setAttribute("PlanStat", planStat);
 			}
 			else if(result.equals("manager")){
 				List planlist = pm.GetUncheckedPlan();
 				PlanListBean planListBean = new PlanListBean();
 				planListBean.setPlanList(planlist);
 				session.setAttribute("PlanList", planListBean);
-				List statisticlist = stcm.saleStatistic();
 				
+				List statisticlist = stat.saleStatistic("all", "month");
 				SaleStatisticBean sb = new SaleStatisticBean();
 				sb.setCommodityList(statisticlist);
 				session.setAttribute("SaleStat", sb);
 				
-				List<User> userlist = um.find();
-				int age18 = 0;int age25=0;int age35=0;int age50=0;int agemore=0;
-				int level1 = 0; int level2 = 0; int level3=0; int level4=0;
-				int statei=0; int statea=0; int states=0; int statep=0;
-				for(int i=0;i<userlist.size();i++){
-					int age = userlist.get(i).getAge();
-					int level = userlist.get(i).getLevel();
-					User.UserState state = userlist.get(i).getState();
-					
-					switch(level){
-					case 1:
-						level1++;
-						break;
-					case 2:
-						level2++;
-						break;
-					case 3:
-						level3++;
-						break;
-					case 4:
-						level4++;
-						break;
-					}
-					if(age<18)
-						age18++;
-					else if(age<25)
-						age25++;
-					else if(age<35)
-						age35++;
-					else if(age<50)
-						age50++;
-					else
-						agemore++;
-					if(state==User.UserState.active)
-						statea++;
-					else if(state==User.UserState.inactive)
-						statei++;
-					else if(state==User.UserState.paused)
-						statep++;
-					else if(state==User.UserState.stopped)
-						states++;
-				}
-				Map<String, Integer> map = new HashMap<String, Integer>();
-				map.put("less18", age18);
-				map.put("1825", age25);
-				map.put("2535", age35);
-				map.put("3550", age50);
-				map.put("more50", agemore);
-				map.put("level1", level1);
-				map.put("level2", level2);
-				map.put("level3", level3);
-				map.put("level4", level4);
-				map.put("active", statea);
-				map.put("inactive", statei);
-				map.put("stop", states);
-				map.put("paused", statep);
-				session.setAttribute("UserStat", map);
+
+				Map commdmap = stat.commodityStatByType("all", "month");
+				session.setAttribute("CommodityStat", commdmap);
 				
+				StoreListBean storeListBean = new StoreListBean();
+				List<Store> storelist = stm.GetStoreList();
+				storeListBean.setStoreList(storelist);
+				session.setAttribute("StoreList", storeListBean);
+				
+				Map usermap = stat.userStatistic();
+				session.setAttribute("UserStat", usermap);
+				Map userlevelmap = stat.userLevelStatistic();
+				session.setAttribute("UserLevel", userlevelmap);
+				
+				List channel = stat.channelStatistic("2016");
+				session.setAttribute("ChannelStat", channel);
+				session.setAttribute("selectyear", "2016");
+				
+				Map storemap = stat.storeStatistic("2016");
+				session.setAttribute("StoreStat", storemap);
+				
+				List<StaffSale> staffsale = stat.staffStatistic("month");
+				session.setAttribute("StaffStat", staffsale);
+				session.setAttribute("selectstore", "all");
+				session.setAttribute("selecttime", "month");
 			}
 			else if(result.equals("saler")){
 				Store store = stm.GetStore(staff.getStoreId());

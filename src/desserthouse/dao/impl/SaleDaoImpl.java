@@ -12,6 +12,8 @@ import desserthouse.dao.SaleDao;
 import desserthouse.model.Order;
 import desserthouse.model.Plan;
 import desserthouse.model.PlanCommodity;
+import desserthouse.model.StaffSale;
+import desserthouse.model.StoreSale;
 
 public class SaleDaoImpl implements SaleDao{
 	public static SaleDaoImpl saleDao = new SaleDaoImpl();
@@ -216,7 +218,68 @@ public class SaleDaoImpl implements SaleDao{
 		ArrayList<PlanCommodity> list = new ArrayList();
 		try 
 		{
-			stmt=con.prepareStatement("select commodity_id, coalesce(sum(num),0) as sumnum from sale group by commodity_id");
+			stmt=con.prepareStatement("select commodity_id, count(commodity_id) as sumnum from sale group by commodity_id");
+			result=stmt.executeQuery();
+			while(result.next()){
+				PlanCommodity pc = new PlanCommodity();
+				pc.setId(result.getString("commodity_id"));
+				pc.setNum(result.getInt("sumnum"));
+				list.add(pc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return list;
+	}
+	
+	public List Statistic(String begindate,String enddate) {
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		ArrayList<PlanCommodity> list = new ArrayList();
+		try 
+		{
+			stmt=con.prepareStatement("select commodity_id, count(commodity_id) as sumnum from sale"
+					+ " where date>='"+begindate+"' and date<'"+enddate
+					+ "' group by commodity_id;");
+			result=stmt.executeQuery();
+			while(result.next()){
+				PlanCommodity pc = new PlanCommodity();
+				pc.setId(result.getString("commodity_id"));
+				pc.setNum(result.getInt("sumnum"));
+				list.add(pc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return list;
+		
+	}
+	@Override
+	public List<PlanCommodity> Statistic(String storeid,String begindate,String enddate) {
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		ArrayList<PlanCommodity> list = new ArrayList();
+		try 
+		{
+			stmt=con.prepareStatement("select commodity_id, count(commodity_id) as sumnum from sale"
+					+ " where date>='"+begindate+"' and date<'"+enddate+"' and store_id='"+storeid+"' "
+					+ "group by commodity_id;");
 			result=stmt.executeQuery();
 			while(result.next()){
 				PlanCommodity pc = new PlanCommodity();
@@ -237,4 +300,145 @@ public class SaleDaoImpl implements SaleDao{
 		return list;
 	}
 
+	public List<PlanCommodity> PriceStatistic(String storeid,String begindate,String enddate) {
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		ArrayList<PlanCommodity> list = new ArrayList();
+		try 
+		{
+			stmt=con.prepareStatement("select commodity_id, coalesce(sum(price),0) as sumnum from sale"
+					+ " where date>='"+begindate+"' and date<'"+enddate+"' and store_id='"+storeid+"' "
+					+ "group by commodity_id;");
+			result=stmt.executeQuery();
+			while(result.next()){
+				PlanCommodity pc = new PlanCommodity();
+				pc.setId(result.getString("commodity_id"));
+				pc.setPrice(result.getDouble("sumnum"));
+				list.add(pc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return list;
+	}
+	@Override
+	public List PriceStatistic(String begindate, String enddate) {
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		ArrayList<PlanCommodity> list = new ArrayList();
+		try 
+		{
+			stmt=con.prepareStatement("select commodity_id, coalesce(sum(price),0) as sumnum from sale"
+					+ " where date>='"+begindate+"' and date<'"+enddate
+					+ "' group by commodity_id;");
+			result=stmt.executeQuery();
+			while(result.next()){
+				PlanCommodity pc = new PlanCommodity();
+				pc.setId(result.getString("commodity_id"));
+				pc.setPrice(result.getDouble("sumnum"));
+				list.add(pc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return list;
+		
+	}
+
+	public double channelStatistic(String begindate,String enddate,String type){
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		double num=0;
+		try 
+		{
+			stmt=con.prepareStatement("select sum(price) as num from sale where date>='"+begindate+"' and date<'"+enddate+"' and sale_type='"+type+"';");
+			result=stmt.executeQuery();
+			while(result.next()){
+				num = result.getDouble("num");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return num;
+	}
+	
+	public List<StoreSale> storeStatistic(String begindate,String enddate){
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		ArrayList<StoreSale> list = new ArrayList();
+		try 
+		{
+			stmt=con.prepareStatement("select sum(price) as sum,store_id from sale where date>='"+begindate+"' and date<'"+enddate+"' group by store_id;");
+			result=stmt.executeQuery();
+			while(result.next()){
+				StoreSale ss = new StoreSale();
+				ss.setId(result.getString("store_id"));
+				ss.setPrice(result.getDouble("sum"));
+				list.add(ss);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return list;
+	}
+	
+	public List<StaffSale> staffStatistic(String begindate,String enddate){
+		Connection con=daoHelper.getConnection();
+		PreparedStatement stmt=null;
+		ResultSet result=null;
+		ArrayList<StaffSale> list = new ArrayList();
+		try 
+		{
+			stmt=con.prepareStatement("select count(*) as sum,p.saler_id from (select saler_id,sale_id from sale where date>='"+begindate+"' and date<'"+enddate+"' group by sale_id) p group by p.saler_id");
+			result=stmt.executeQuery();
+			while(result.next()){
+				StaffSale ss = new StaffSale();
+				ss.setId(result.getString("saler_id"));
+				ss.setNum(result.getInt("sum"));
+				list.add(ss);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			daoHelper.closeConnection(con);
+			daoHelper.closePreparedStatement(stmt);
+			daoHelper.closeResult(result);
+		}
+		return list;
+	}
 }

@@ -87,7 +87,7 @@ public class PlanManagerImpl implements PlanManager{
 		String str = String.format("%03d", num);
 		return s+str;
 	}
-	@Override
+	
 	public boolean Add(Plan plan) {
 		List list = planDao.find(plan.getStore(), plan.getDate());
 		if(list.isEmpty()){
@@ -119,4 +119,12 @@ public class PlanManagerImpl implements PlanManager{
 		return true;
 	}
 
+	@Override
+	public Plan getNullPlan() {
+		Plan plan = new Plan();
+        plan.initCommodity();
+		return plan;
+	}
+
+	
 }

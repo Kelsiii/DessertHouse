@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,10 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import desserthouse.action.PlanListBean;
+import desserthouse.action.PlanStatBean;
 import desserthouse.action.StoreListBean;
 import desserthouse.logic.PlanManager;
+import desserthouse.logic.Statistic;
 import desserthouse.logic.impl.PlanManagerImpl;
+import desserthouse.logic.impl.StatisticImpl;
 import desserthouse.logic.impl.StoreManagerImpl;
 import desserthouse.model.Plan;
 
@@ -47,6 +52,7 @@ public class PlanServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PlanManager pm = new PlanManagerImpl();
+		Statistic stat = new StatisticImpl();
 		String type = request.getParameter("type");
 		HttpSession session = request.getSession(true);
 		PrintWriter out = response.getWriter();
@@ -121,6 +127,20 @@ public class PlanServlet extends HttpServlet {
 			PlanListBean planListBean = new PlanListBean();
 			planListBean.setPlanList(planlist);
 			session.setAttribute("PlanList", planListBean);
+		}
+		
+		if(type.equals("stat")){
+			String store = request.getParameter("store");
+			String date = request.getParameter("date");
+			ArrayList statlist = (ArrayList) stat.planStatistic(store, date);
+			Plan statplan = pm.getNullPlan();
+			statplan.setStore(store);
+			statplan.setDate(date);
+			statplan.setCommodity(statlist);
+			PlanStatBean planStat = new PlanStatBean();
+			planStat.setPlan(statplan);
+			session.setAttribute("PlanStat", planStat);
+			out.print("true");
 		}
 	}
 

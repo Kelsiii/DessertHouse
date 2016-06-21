@@ -17,7 +17,7 @@ scope="session"></jsp:useBean>
 	<meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>销售计划管理</title>
+    <title>添加销售计划</title>
     
     <!-- Stylesheets -->
 	<link rel="stylesheet" href="../css/area.css">
@@ -121,9 +121,7 @@ scope="session"></jsp:useBean>
     
     <script type="text/javascript">
     	function getStatPlan(){
-    		alert(document.getElementById("planDate").value);
     		if(document.getElementById("planDate").value!="点击选择日期"){
-    			alert();
     			var storeselect = document.getElementById("store").selectedIndex;
     			$.ajax({
                     //提交数据的类型 POST GET
@@ -139,8 +137,7 @@ scope="session"></jsp:useBean>
                     datatype: "text",//"xml", "html", "script", "json", "jsonp", "text".
                     success:function(data){
                         if(data=="true"){
-                        	window.location.href="planner.jsp"; 
-                        	showAdd();
+                        	window.location.href="newplan.jsp";
                         }
                     }
                 });
@@ -185,84 +182,10 @@ scope="session"></jsp:useBean>
     
     <div id="indexmenu" style="padding-top:50px;">
            <a href="#" class="btn btn-2">销售计划</a> 
-           <a href="newplan.jsp" class="btn btn-2">新建计划</a>
+           <a href="#" class="btn btn-2">新建计划</a>
     </div>
     
-    <div class="right-container" id="plan" style="visibility:">
-        <h1>销售计划</h1>
-        <table id="cart_table" cellspacing="0">
-            <thead id="table_head">
-                <tr>
-                    <th style="height:44px;">
-                        <p>编号</p>
-                    </th>
-                    <th style="height:44px;">
-                        <p>店铺</p>
-                    </th>
-                    <th style="height:44px;">
-                        <p>计划日期</p>
-                    </th>
-                    <th style="height:44px;">
-                        <p>创建日期</p>
-                    </th>
-                    <th style="height:44px;">
-                        <p>状态</p>
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody id="userGroups" class="tbody">
-            <%
-                int planNum = PlanList.getPlanList().size();
-                int planPages = planNum/10 +1;
-                int planIndex = 10;
-                if(planPages==1)
-                	planIndex = planNum;
-                for(int i=0;i<planIndex;i++){
-                	pageContext.setAttribute("planitem", PlanList.getPlan(i));
-      
-                %>
-                <tr>
-                    <td class="table_cell admin" style="width:20%;">
-                        <a href="#" onclick="showDetail('<%=PlanList.getPlan(i).getId() %>')" class="sys-ch"><jsp:getProperty name="planitem" property="id" /></a>
-                    </td>
-                    <td class="table_cell admin" style="width:15%;">
-                       <p class="sys-ch"><jsp:getProperty name="planitem" property="store" /></p>
-                    </td>
-                    <td class="table_cell admin" style="width:25%;">
-                       <p class="sys-ch"><jsp:getProperty name="planitem" property="date" /></p>
-                    </td>
-                    <td class="table_cell admin" style="width:25%;">
-                       <p class="sys-ch"><jsp:getProperty name="planitem" property="createDate" /></p>
-                    </td>
-                    <%if(PlanList.getPlan(i).getState().equals("unchecked")){ %>
-                    <td class="table_cell action" >
-                        <p class="sys-ch">未审核</p>
-                    </td>
-                    <%}else if(PlanList.getPlan(i).getState().equals("approved")){ %>
-                    <td class="table_cell action" >
-                        <p class="sys-ch">通过</p>
-                    </td>
-                    <%}else{ %>
-                    <td class="table_cell action" style="color:#C43F50">
-                        <p class="sys-ch">未通过</p>
-                    </td>
-					<%} %>
-                </tr>
-                <%} %>
-            </tbody>
-        </table>
-        <%if(planPages>1){ %>
-            <div class="page fr">
-      			<%for(int j=1;j<=planPages;j++){ %>
-                <a id=<%="page"+Integer.toString(j) %> class="a2" href="javascript:void();" onclick=""><%=j %></a>
-                <%} %>
-                <a id="nextpage" class="turing" href="javascript:void();" onclick="setList(2)">下一页</a>
-            </div>
-            <%} %>
-    </div>
-    
-    <div class="right-container" id="plan_edit" style="height:1600px;visibility:hidden">
+    <div class="right-container" id="plan_edit" style="height:1600px">
         <%Plan plan = PlanStat.getPlan();
         %>
         <span class="sys-ch" style=""> 计划日期：</span>
